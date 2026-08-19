@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>معامل SQL اليوم 1 — سهلة مع الحل</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+  <style>
+    body{background:#f7fafc;font-family:Tahoma,Arial,sans-serif;color:#1f2937;line-height:2;font-size:1.05rem;}
+    .hero{background:linear-gradient(135deg,#1f4e79,#2f6fa8);color:#fff;padding:32px 20px;border-radius:18px;}
+    .card-x{background:#fff;border:1px solid #dbe5f0;border-radius:16px;margin-bottom:16px;overflow:hidden;}
+    .card-x .h{background:#eaf2f8;color:#12395b;font-weight:700;padding:12px 14px;}
+    .card-x .b{padding:16px;}
+    .ask{background:#eff6ff;border-radius:12px;padding:12px 14px;}
+    .sol{background:#ecfdf5;border-right:5px solid #059669;border-radius:12px;padding:12px 14px;margin-top:10px;}
+    .why{background:#fff8e1;border-right:5px solid #f2b705;border-radius:12px;padding:12px 14px;margin-top:10px;}
+    .code{background:#0f172a;color:#e2e8f0;border-radius:12px;padding:12px;font-family:Consolas,monospace;direction:ltr;text-align:left;white-space:pre-wrap;font-size:.9rem;}
+    .box{background:#f8fbff;border:1px solid #dbe5f0;border-radius:12px;padding:12px 14px;}
+  </style>
+</head>
+<body>
+  <div class="container py-4" style="max-width:900px">
+    <section class="hero text-center mb-3">
+      <h1 class="fw-bold">04 — معامل SQL السهلة + الحل تحت كل Lab</h1>
+    </section>
+
+    <div class="box mb-3">
+      أول مرة فقط نفّذ الملفين:
+      <code>01_Create_Database.sql</code> ثم <code>02_Seed_Dirty_Data.sql</code>
+      من SSMS أو Azure Data Studio (زر Execute).
+    </div>
+
+    <div class="card-x">
+      <div class="h">Lab 1 — شوف العملاء</div>
+      <div class="b">
+        <div class="ask">اعرض 10 عملاء.</div>
+        <div class="sol"><div class="code">USE Abad_DataQuality_Lab;
+SELECT TOP 10 customer_id, full_name, phone, email, city
+FROM dbo.customers;</div></div>
+        <div class="why">فقط مشاهدة. لاحظ بنفسك أي خانات فاضية أو غريبة.</div>
+      </div>
+    </div>
+
+    <div class="card-x">
+      <div class="h">Lab 2 — عدّ الجداول بسرعة</div>
+      <div class="b">
+        <div class="ask">كم صف في customers و orders؟</div>
+        <div class="sol"><div class="code">SELECT COUNT(*) AS customers_count FROM dbo.customers;
+SELECT COUNT(*) AS orders_count FROM dbo.orders;</div>
+        المتوقع تقريبًا: customers=23 ، orders=15
+        </div>
+        <div class="why">هذا استكشاف أولي: نعرف حجم البيانات.</div>
+      </div>
+    </div>
+
+    <div class="card-x">
+      <div class="h">Lab 3 — القيم الناقصة في الجوال</div>
+      <div class="b">
+        <div class="ask">أظهر ثم عُدّ الجوالات الناقصة.</div>
+        <div class="sol">
+          <div class="code">-- العرض
+SELECT customer_id, full_name, phone
+FROM dbo.customers
+WHERE phone IS NULL OR LTRIM(RTRIM(phone)) = '';
+
+-- العدد
+SELECT COUNT(*) AS missing_phone
+FROM dbo.customers
+WHERE phone IS NULL OR LTRIM(RTRIM(phone)) = '';</div>
+        </div>
+        <div class="why">أول قياس جودة حقيقي وبسيط: كم ناقص؟</div>
+      </div>
+    </div>
+
+    <div class="card-x">
+      <div class="h">Lab 4 — اكتمال الإيميل بنسبة</div>
+      <div class="b">
+        <div class="ask">طلع نسبة اكتمال الإيميل.</div>
+        <div class="sol">
+          <div class="code">SELECT
+  COUNT(*) AS total_rows,
+  SUM(CASE WHEN email IS NOT NULL AND LTRIM(RTRIM(email)) &lt;&gt; '' THEN 1 ELSE 0 END) AS has_email,
+  CAST(100.0 * SUM(CASE WHEN email IS NOT NULL AND LTRIM(RTRIM(email)) &lt;&gt; '' THEN 1 ELSE 0 END)
+       / COUNT(*) AS DECIMAL(5,2)) AS email_completeness_pct
+FROM dbo.customers;</div>
+          ركّز على العمود الأخير فقط.
+        </div>
+        <div class="why">نفس فكرة تاسك 5. النسبة تسهل الكلام مع الإدارة.</div>
+      </div>
+    </div>
+
+    <div class="card-x">
+      <div class="h">Lab 5 — الإيميلات المكررة</div>
+      <div class="b">
+        <div class="ask">اطبع الإيميلات اللي اتكررت.</div>
+        <div class="sol">
+          <div class="code">SELECT email, COUNT(*) AS cnt
+FROM dbo.customers
+WHERE email IS NOT NULL AND LTRIM(RTRIM(email)) &lt;&gt; ''
+GROUP BY email
+HAVING COUNT(*) &gt; 1
+ORDER BY cnt DESC;</div>
+        </div>
+        <div class="why">لو cnt = 2 معناها الإيميل ظهر مرتين. هذه بداية اكتشاف عملاء مكررين.</div>
+      </div>
+    </div>
+
+    <div class="card-x">
+      <div class="h">Lab 6 — طلبات بدون عميل (اختياري سهل)</div>
+      <div class="b">
+        <div class="ask">هل في طلبات لعميل مش موجود؟</div>
+        <div class="sol">
+          <div class="code">SELECT order_id, customer_id, status
+FROM dbo.orders
+WHERE customer_id IS NULL
+   OR customer_id NOT IN (SELECT customer_id FROM dbo.customers WHERE customer_id IS NOT NULL);</div>
+        </div>
+        <div class="why">إذا ظهر صف هنا، العلاقة بين الطلبات والعملاء مكسورة (Integrity).</div>
+      </div>
+    </div>
+
+    <div class="box">
+      ملف مجمع للتشغيل: <code>04_Day1_Solutions_Explained.sql</code><br>
+      التالي: <a href="../05_Excel_Python_Labs/Day_Excel_Python_Guide.html">Excel/Python Labs</a>
+    </div>
+  </div>
+</body>
+</html>

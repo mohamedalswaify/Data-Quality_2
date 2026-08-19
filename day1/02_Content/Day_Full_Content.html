@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 1 — Day 1: Foundations + Dimensions + Measurement | اليوم 1: التأسيس + الأبعاد + القياس</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+  <style>
+    body{background:#f4f7fb;font-family:Tahoma,Arial,sans-serif;color:#1f2937;line-height:1.95;}
+    .hero{background:linear-gradient(135deg,#12395b,#2f6fa8);color:#fff;padding:48px 24px;border-radius:24px;box-shadow:0 10px 30px rgba(0,0,0,.12);}
+    .day-nav{background:#fff;border:1px solid #dbe5f0;border-radius:16px;padding:14px 16px;margin-bottom:20px;}
+    .day-nav a{color:#1f4e79;font-weight:700;text-decoration:none;margin-left:12px;}
+    .part-banner{background:#e8f1fb;color:#12395b;border-radius:14px;padding:14px 18px;margin:28px 0 18px;font-weight:700;border-right:6px solid #2f6fa8;}
+    .section-card,.card-section,.module-card,.card-x,.lab-card,.document-card{border:none;border-radius:18px;box-shadow:0 8px 22px rgba(15,23,42,.08);overflow:hidden;margin-bottom:24px;}
+    .section-card .card-header,.card-section .card-header,.module-card .card-header,.card-x .card-header,.lab-card .card-header{background:#eaf2f8;color:#12395b;font-weight:700;font-size:1.1rem;padding:16px 20px;border-bottom:1px solid #d8e6f2;}
+    .topic-box,.box,.learning-box{background:#f8fbff;border:1px solid #dbe7f3;border-radius:14px;padding:14px 16px;margin-bottom:12px;}
+    .topic-title,.sub{color:#1f4e79;font-weight:700;}
+    .pill,.badge-soft{display:inline-block;background:#e8f1fb;color:#1f4e79;border-radius:999px;padding:.35rem .8rem;margin:.2rem;font-size:.92rem;font-weight:600;}
+    .highlight,.tip,.meta,.warn{background:#fff8e1;border-right:5px solid #f2b705;padding:14px 16px;border-radius:12px;}
+    .danger{background:#fff1f2;border-right:5px solid #e11d48;padding:14px 16px;border-radius:12px;}
+    .quote-box{background:#f8fbff;border:1px solid #dbe7f3;border-right:5px solid #2f6fa8;border-radius:14px;padding:16px;}
+    .timeline{border-right:4px solid #2f6fa8;padding-right:18px;}
+    .timeline .step{margin-bottom:14px;background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:12px 14px;}
+    .dim{border:1px solid #dbe7f3;border-radius:14px;padding:16px;height:100%;background:#fff;}
+    .dim h6{color:#1f4e79;font-weight:700;}
+    .code{background:#0f172a;color:#e2e8f0;border-radius:12px;padding:14px 16px;font-family:Consolas,monospace;font-size:.92rem;direction:ltr;text-align:left;white-space:pre-wrap;}
+    .en{direction:ltr;text-align:left;font-family:Arial,Helvetica,sans-serif;line-height:1.7;margin-top:.35rem;}
+    .sticky-tools,.print-btn{position:fixed;top:18px;left:18px;z-index:1000;}
+    .q{background:#f8fbff;border:1px solid #dbe7f3;border-radius:12px;padding:12px 14px;margin-bottom:10px;}
+    .answer-key{background:#fff8e1;border-right:5px solid #f2b705;border-radius:12px;padding:14px;}
+    @media print{body{background:#fff;}.sticky-tools,.print-btn,.no-print{display:none!important;}@page{size:A4;margin:12mm;}}
+</style>
+</head>
+<body>
+  <div class="sticky-tools"><button class="btn btn-primary" onclick="window.print()">طباعة / Print PDF</button></div>
+  <div class="container py-4 py-md-5">
+    <section class="hero text-center mb-4">
+      <p class="mb-2 opacity-75">معهد شبكة أباد للتدريب | ABAD Network for Training — برنامج 3 أيام</p>
+      <h1 class="fw-bold mb-3">اليوم 1: التأسيس + الأبعاد + القياس</h1>
+      <h4 class="mb-2">Day 1: Foundations + Dimensions + Measurement</h4>
+      <h5 class="mb-2">👨‍🏫 Eng. Mohamed Alswaify</h5>
+      <p class="mb-0">المحتوى الكامل لموديولات 0 + 1 + 2 | Full content of Modules 0 + 1 + 2</p>
+    </section>
+
+    
+    <div class="box no-print" style="margin-bottom:18px">
+      <strong>ترتيب اليوم | Follow this day order:</strong>
+      <code>00_Start_Here</code> → <code>01_Outline</code> → <code>02_Content</code> → <code>03_Tasks</code> → <code>04_SQL_Labs</code> → <code>05_Excel_Python_Labs</code>
+    </div>
+<div class="day-nav no-print">
+      <strong>التنقل | Navigate:</strong>
+      <a href="../../index.html">الفهرس | Index</a>
+      <a href="../../01_Day1_Foundations_Measurement/00_Start_Here.html">اليوم 1</a>
+      <a href="../../02_Day2_Cleaning_Rules/00_Start_Here.html">اليوم 2</a>
+      <a href="../../03_Day3_Monitoring_Capstone/00_Start_Here.html">اليوم 3</a>
+      <a href="../01_Outline/Day_Outline.html">Outline</a>
+    </div>
+
+    <!-- ========== SQL INTRO (Day 1 prerequisite) ========== -->
+    <div class="part-banner" id="SQL_SELECT_Intro">
+      مقدمة عملية: SQL و SELECT قبل التاسكات والمعامل | Practical Intro: SQL &amp; SELECT
+      <div class="en" style="font-weight:500;margin-top:.25rem">Read this before Tasks and Labs. Start simple, then examples like the tasks.</div>
+    </div>
+
+    <div class="card section-card">
+      <div class="card-header">لماذا SQL هنا؟ | Why SQL in a Data Quality course?</div>
+      <div class="card-body">
+        <p>
+          SQL هي لغة سؤال قواعد البيانات. في جودة البيانات نستخدمها لـ:
+          <strong>استكشاف</strong> البيانات، <strong>قياس</strong> الاكتمال والصحة والتكرار، و<strong>اكتشاف</strong> العلاقات المكسورة.
+        </p>
+        <div class="en">We use SQL to explore, measure completeness/validity/uniqueness, and find broken relationships.</div>
+        <div class="highlight mt-3 mb-0">
+          جملة للتثبيت: قبل أي تنظيف… اسأل البيانات بـ SELECT حتى تعرف حجم المشكلة بالأرقام.
+        </div>
+      </div>
+    </div>
+
+    <div class="card section-card">
+      <div class="card-header">أ) شكل جملة SELECT البسيطة | Basic SELECT shape</div>
+      <div class="card-body">
+        <div class="code">SELECT   columns
+FROM     table_name
+WHERE    condition
+ORDER BY column;</div>
+        <ul>
+          <li><strong>SELECT</strong>: ماذا تريد أن ترى؟ (أعمدة)</li>
+          <li><strong>FROM</strong>: من أي جدول؟</li>
+          <li><strong>WHERE</strong>: أي صفوف فقط؟ (اختياري)</li>
+          <li><strong>ORDER BY</strong>: بأي ترتيب؟ (اختياري)</li>
+        </ul>
+        <div class="en">Think: SELECT what → FROM where → WHERE filter → ORDER BY sort.</div>
+      </div>
+    </div>
+
+    <div class="card section-card">
+      <div class="card-header">ب) أمثلة سهلة جدًا (تدرّب عليها أولًا) | Super-easy examples</div>
+      <div class="card-body">
+        <p>نفّذ داخل قاعدة <code>Abad_DataQuality_Lab</code> بعد Create+Seed:</p>
+        <p class="topic-title">مثال 1 — اعرض كل شيء من جدول العملاء (محدود)</p>
+        <div class="code">USE Abad_DataQuality_Lab;
+SELECT TOP 10 * FROM dbo.customers;</div>
+        <div class="topic-box"><strong>المعنى:</strong> أعطني أول 10 صفوف بكل الأعمدة.</div>
+
+        <p class="topic-title mt-3">مثال 2 — أعمدة محددة فقط</p>
+        <div class="code">SELECT customer_id, full_name, phone, email
+FROM dbo.customers;</div>
+        <div class="topic-box"><strong>المعنى:</strong> لا تعرض كل الأعمدة؛ ركّز على ما يهم القياس.</div>
+
+        <p class="topic-title mt-3">مثال 3 — صفوف بشرط بسيط</p>
+        <div class="code">SELECT customer_id, full_name, email
+FROM dbo.customers
+WHERE email IS NULL;</div>
+        <div class="topic-box"><strong>المعنى:</strong> أين الإيميل فارغ؟ هذا بداية قياس Completeness.</div>
+
+        <p class="topic-title mt-3">مثال 4 — عدّ الصفوف</p>
+        <div class="code">SELECT COUNT(*) AS total_customers
+FROM dbo.customers;</div>
+        <div class="topic-box"><strong>المعنى:</strong> كم صف عندنا؟ نحتاجه كمقام للنسب المئوية.</div>
+
+        <p class="topic-title mt-3">مثال 5 — قيم مميزة</p>
+        <div class="code">SELECT DISTINCT status
+FROM dbo.customers;</div>
+        <div class="topic-box"><strong>المعنى:</strong> ما القيم المختلفة لحقل الحالة؟ يساعدك تكتشف Active/active/ACTIVE.</div>
+      </div>
+    </div>
+
+    <div class="card section-card">
+      <div class="card-header">ج) أمثلة مماثلة للتاسكات (نفس أسلوب الحل) | Task-like examples</div>
+      <div class="card-body">
+        <p class="topic-title">مثال T1 — اكتمال حقل واحد (مثل تاسك Completeness)</p>
+        <div class="code">SELECT
+  COUNT(*) AS total_rows,
+  SUM(CASE WHEN phone IS NOT NULL AND LTRIM(RTRIM(phone)) &lt;&gt; '' THEN 1 ELSE 0 END) AS phone_ok,
+  CAST(100.0 * SUM(CASE WHEN phone IS NOT NULL AND LTRIM(RTRIM(phone)) &lt;&gt; '' THEN 1 ELSE 0 END)
+       / COUNT(*) AS DECIMAL(5,2)) AS phone_completeness_pct
+FROM dbo.customers;</div>
+        <div class="explain highlight">
+          <strong>الشرح:</strong> CASE يعطي 1 إذا الهاتف موجود وغير فارغ، و0 غير ذلك.
+          نجمع الـ 1ات ÷ الإجمالي × 100 = نسبة الاكتمال. هذا هو قلب تاسك 5.
+        </div>
+
+        <p class="topic-title mt-3">مثال T2 — إيميلات غير صالحة (مثل Validity)</p>
+        <div class="code">SELECT customer_id, email
+FROM dbo.customers
+WHERE email IS NOT NULL
+  AND (email LIKE '%@@%' OR email NOT LIKE '%@%.%');</div>
+        <div class="topic-box">نبحث عن أشكال خاطئة واضحة (@@ أو بدون نطاق). مشابه لجزء Lab C.</div>
+
+        <p class="topic-title mt-3">مثال T3 — تكرار البريد (مثل تاسك Uniqueness)</p>
+        <div class="code">SELECT LOWER(email) AS email_norm, COUNT(*) AS cnt
+FROM dbo.customers
+WHERE email IS NOT NULL AND LTRIM(RTRIM(email)) &lt;&gt; ''
+GROUP BY LOWER(email)
+HAVING COUNT(*) &gt; 1
+ORDER BY cnt DESC;</div>
+        <div class="explain highlight">
+          <strong>الشرح:</strong> GROUP BY يجمع الصفوف المتشابهة. HAVING COUNT(*) &gt; 1 يعني «أظهر فقط ما تكرر».
+          LOWER يمنع اختلاف حالة الأحرف من إخفاء التكرار. هذا هو تاسك 6.
+        </div>
+
+        <p class="topic-title mt-3">مثال T4 — طلبات بلا عميل (Integrity preview)</p>
+        <div class="code">SELECT o.order_id, o.customer_id
+FROM dbo.orders o
+WHERE o.customer_id IS NULL
+   OR NOT EXISTS (
+        SELECT 1 FROM dbo.customers c
+        WHERE c.customer_id = o.customer_id
+      );</div>
+        <div class="topic-box">إذا الطلب يشير لعميل غير موجود = مشكلة Integrity. ستراها في Lab C.</div>
+      </div>
+    </div>
+
+    <div class="card section-card">
+      <div class="card-header">د) كلمات ستراها كثيرًا اليوم | Keywords you will reuse today</div>
+      <div class="card-body">
+        <table class="table table-bordered">
+          <thead class="table-light"><tr><th>الكلمة</th><th>معناها باختصار</th><th>استخدامها في DQ</th></tr></thead>
+          <tbody>
+            <tr><td>SELECT / FROM</td><td>اختر من جدول</td><td>استكشاف</td></tr>
+            <tr><td>WHERE</td><td>تصفية صفوف</td><td>إظهار السجلات الفاشلة فقط</td></tr>
+            <tr><td>COUNT / SUM / CASE</td><td>عدّ وحساب شرطي</td><td>Completeness &amp; Scorecard</td></tr>
+            <tr><td>GROUP BY / HAVING</td><td>تجميع ثم شرط على التجميع</td><td>Uniqueness / duplicates</td></tr>
+            <tr><td>NOT EXISTS</td><td>لا يوجد صف مطابق</td><td>Integrity / orphans</td></tr>
+            <tr><td>LIKE</td><td>مطابقة نمط نصي</td><td>Validity للصيغ</td></tr>
+          </tbody>
+        </table>
+        <div class="highlight mb-0">
+          بعد هذا القسم انتقل إلى: <a href="../03_Tasks/Day_Tasks.html">03 Tasks (كل تاسك + حله)</a>
+          ثم <a href="../04_SQL_Labs/Day_SQL_Labs_Guide.html">04 SQL Labs (كل Lab + حله)</a>.
+        </div>
+      </div>
+    </div>
+
+    <div class="part-banner" id="DQ_Module_0_Introduction">
+      الجزء أ — مقدمة جودة البيانات | Part A — Introduction
+      <div class="en" style="font-weight:500;margin-top:.25rem">Source module preserved in full below.</div>
+    </div>
+    <div class="card section-card">
+      <div class="card-header">الموضوعات | Topics Covered</div>
+      <div class="card-body">
+        <span class="pill">أهمية جودة البيانات | Why DQ</span>
+        <span class="pill">تكلفة البيانات الرديئة | Cost of Poor DQ</span>
+        <span class="pill">الجودة والحوكمة | DQ & Governance</span>
+        <span class="pill">دورة حياة DQ | Lifecycle</span>
+        <span class="pill">الأدوار والمسؤوليات | RACI</span>
+      </div>
+    </div>
+
+    <div class="card section-card">
+      <div class="card-header">1) ما هي جودة البيانات؟ | What is Data Quality?</div>
+      <div class="card-body">
+        <p>
+          <strong>جودة البيانات (Data Quality)</strong> تعني أن البيانات <em>مناسبة للغرض المقصود</em>
+          (Fit for Purpose). ليست «كمالًا مطلقًا»، بل مستوى موثوقية يكفي لاتخاذ القرار الصحيح،
+          وتشغيل العمليات، والامتثال، والتحليل، والذكاء الاصطناعي.
+        </p>
+        <div class="en"><span class="sub">In English:</span> Data quality means data is fit for purpose—not absolute perfection, but enough reliability for decisions, operations, compliance, analytics, and AI.</div>
+        <div class="row g-3 mt-2">
+          <div class="col-md-6">
+            <div class="topic-box">
+              <div class="topic-title">بيانات عالية الجودة | High-quality data</div>
+              <ul class="mb-0">
+                <li>صحيحة وتمثّل الواقع | Correct and represents reality</li>
+                <li>مكتملة بالقدر المطلوب | Complete as required</li>
+                <li>متسقة عبر الأنظمة | Consistent across systems</li>
+                <li>متاحة في الوقت المناسب | Available on time</li>
+                <li>وحيدة بدون تكرار مضلّل | Unique without misleading duplicates</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="topic-box">
+              <div class="topic-title">بيانات رديئة الجودة | Poor-quality data</div>
+              <ul class="mb-0">
+                <li>أخطاء إملائية وأرقام خاطئة | Typos and wrong numbers</li>
+                <li>حقول فارغة حرجة | Critical missing fields</li>
+                <li>تعارض بين نظامين | Conflicts between systems</li>
+                <li>بيانات قديمة | Stale data</li>
+                <li>عملاء مكررون بنفس الهوية | Duplicate customers</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="highlight mt-3">
+          جملة للتثبيت: «التقرير الجميل على بيانات سيئة = قرار جميل لكنه خاطئ.»
+          <div class="en">A beautiful report on bad data = a beautiful but wrong decision.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card section-card">
+      <div class="card-header">2) لماذا تهتم الأعمال بجودة البيانات؟ | Why business cares about DQ</div>
+      <div class="card-body">
+        <p>ضعف الجودة يظهر في أماكن مكلفة:</p>
+        <div class="en">Poor quality shows up in expensive places:</div>
+        <ul>
+          <li><strong>المبيعات والتسويق | Sales & Marketing:</strong> حملات على أرقام جوال خاطئة، عملاء مكررون، خصومات مزدوجة.</li>
+          <li><strong>المالية | Finance:</strong> فواتير غير مطابقة، أرصدة خاطئة، تقارير شهرية متأخرة.</li>
+          <li><strong>التشغيل | Operations:</strong> مخزون وهمي، أوامر متأخرة، شحن لعناوين ناقصة.</li>
+          <li><strong>الامتثال | Compliance:</strong> بيانات هوية غير مكتملة، مخالفات تنظيمية.</li>
+          <li><strong>الذكاء الاصطناعي | AI:</strong> نماذج تتعلم من ضوضاء فتعطي نتائج مضلّلة.</li>
+        </ul>
+        <div class="topic-box">
+          <div class="topic-title">رقم يُذكر في التدريب | Training talking point</div>
+          دراسات صناعية تشير غالبًا إلى أن المؤسسات تخسر نسبة ملموسة من إيراداتها بسبب ضعف جودة البيانات
+          (إعادة عمل، فرص ضائعة، قرارات خاطئة، تكلفة تنظيف لاحقة). المهم ليس الرقم الدقيق، بل أن التكلفة حقيقية ومتكررة.
+          <div class="en">Industry studies often cite material revenue loss from poor DQ. The exact percentage matters less than recognizing that the cost is real and recurring.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card section-card">
+      <div class="card-header">3) تكلفة البيانات الرديئة | Cost of Poor Data Quality</div>
+      <div class="card-body">
+        <div class="row g-3">
+          <div class="col-md-4"><div class="topic-box"><div class="topic-title">تكاليف مباشرة | Direct</div><p class="mb-0">إعادة إدخال، تصحيح يدوي، دعم فني، غرامات، مرتجعات.</p><div class="en">Re-entry, manual fixes, support, fines, returns.</div></div></div>
+          <div class="col-md-4"><div class="topic-box"><div class="topic-title">تكاليف غير مباشرة | Indirect</div><p class="mb-0">فقدان ثقة العميل، قرارات بطيئة، تقارير غير موثوقة، إرهاق الفرق.</p><div class="en">Lost trust, slow decisions, unreliable reports, team fatigue.</div></div></div>
+          <div class="col-md-4"><div class="topic-box"><div class="topic-title">تكاليف الفرصة | Opportunity</div><p class="mb-0">حملات فاشلة، بيع متقاطع ضائع، نماذج AI ضعيفة الأداء.</p><div class="en">Failed campaigns, lost cross-sell, weak AI models.</div></div></div>
+        </div>
+        <p class="mt-3 mb-0">
+          قاعدة عملية: كل مشكلة جودة تُكتشف مبكرًا عند الإدخال أرخص بكثير من اكتشافها بعد التقارير أو الشكاوى.
+        </p>
+        <div class="en">Practical rule: catching a DQ issue at entry is far cheaper than discovering it after reports or customer complaints.</div>
+      </div>
+    </div>
+
+    <div class="card section-card">
+      <div class="card-header">4) علاقة الجودة بالحوكمة والتحليل | DQ, Governance & Analytics</div>
+      <div class="card-body">
+        <p>
+          <strong>حوكمة البيانات</strong> تجيب: من يملك؟ من يقرر؟ ما السياسة؟ ما المعيار؟
+          <strong>جودة البيانات</strong> تجيب: هل البيانات فعلاً مطابقة لهذه المعايير؟
+        </p>
+        <div class="en"><span class="sub">In English:</span> Governance answers who owns, who decides, and what the policy/standard is. Data quality answers whether data actually meets those standards.</div>
+        <ul>
+          <li>بدون حوكمة: جودة مؤقتة تعتمد على أفراد. | Without governance: temporary quality that depends on individuals.</li>
+          <li>بدون جودة: حوكمة وثائق بلا أثر تشغيلي. | Without quality: governance documents with no operational effect.</li>
+          <li>التحليل والـ BI يعتمدان على جودة المصدر؛ وإلا يصبح الـ Dashboard أداة تضليل أنيقة.</li>
+        </ul>
+        <div class="en">Analytics and BI depend on source quality; otherwise the dashboard becomes an elegant misleading tool.</div>
+      </div>
+    </div>
+
+    <div class="card section-card">
+      <div class="card-header">5) دورة حياة إدارة جودة البيانات | DQ Lifecycle</div>
+      <div class="card-body">
+        <div class="timeline">
+          <div class="step"><strong>1. Define:</strong> عرّف البيانات الحرجة والأبعاد والقواعد حسب غرض العمل.
+            <div class="en">Define critical data, dimensions, and rules by business purpose.</div>
+          </div>
+          <div class="step"><strong>2. Assess / Measure:</strong> قِس الجودة فعليًا (Profiling + قواعد).
+            <div class="en">Measure quality with profiling and rules.</div>
+          </div>
+          <div class="step"><strong>3. Clean / Remediate:</strong> صحّح البيانات الحالية بأثر قابل للتدقيق.
+            <div class="en">Remediate current data with an auditable trail.</div>
+          </div>
+          <div class="step"><strong>4. Control:</strong> ضع ضوابط منع وكشف عند المصدر والأنابيب.
+            <div class="en">Add preventive and detective controls at source and pipelines.</div>
+          </div>
+          <div class="step"><strong>5. Monitor:</strong> راقب المؤشرات والتنبيهات يوميًا/أسبوعيًا.
+            <div class="en">Monitor KPIs and alerts daily/weekly.</div>
+          </div>
+          <div class="step"><strong>6. Improve:</strong> عالج السبب الجذري وليس العرض فقط.
+            <div class="en">Fix root causes, not only symptoms.</div>
+          </div>
+        </div>
+        <div class="highlight mt-3">هذه الدورة هي العمود الفقري للبرنامج بالكامل؛ كل موديول يغطي مرحلة منها.
+          <div class="en">This lifecycle is the backbone of the whole course; each module covers a stage.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card section-card">
+      <div class="card-header">6) الأدوار والمسؤوليات (RACI مبسّط) | Roles & Responsibilities</div>
+      <div class="card-body">
+        <table class="table table-bordered">
+          <thead class="table-light"><tr><th>الدور | Role</th><th>المسؤولية | Responsibility</th></tr></thead>
+          <tbody>
+            <tr><td>Data Owner (مالك العمل)</td><td>يحدد معنى «صحيح» ويقبل المخاطر والاستثناءات | Defines “correct” and accepts risk/exceptions</td></tr>
+            <tr><td>Data Steward (أمين البيانات)</td><td>يشغّل القواعد، يتابع الاستثناءات، ينسّق التصحيح | Runs rules, tracks exceptions, coordinates fixes</td></tr>
+            <tr><td>Data Engineer / IT</td><td>يبني الأنابيب، الضوابط التقنية، المراقبة | Builds pipelines, technical controls, monitoring</td></tr>
+            <tr><td>Analyst / Consumer</td><td>يبلّغ عن مشاكل الاستخدام ويتحقق من المخرجات | Reports usage issues and validates outputs</td></tr>
+            <tr><td>DQ Lead / Governance</td><td>الإطار العام، المعايير، التقارير للإدارة | Framework, standards, management reporting</td></tr>
+          </tbody>
+        </table>
+        <div class="topic-box mb-0">
+          <div class="topic-title">نقطة نقاش | Discussion</div>
+          إذا لم يوجد مالك عمل واضح للحقل «رقم الجوال»، فمن يقرر هل الصيغة الدولية إلزامية أم لا؟
+          <div class="en">If no clear business owner for “mobile number”, who decides whether international format is mandatory?</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card section-card">
+      <div class="card-header">خلاصة الافتتاح | Opening Summary</div>
+      <div class="card-body">
+        <ul class="mb-3">
+          <li>الجودة = ملاءمة الغرض + موثوقية كافية للقرار. | Quality = fit for purpose + enough reliability for decisions.</li>
+          <li>ضعف الجودة له تكلفة تشغيلية واستراتيجية. | Poor quality has operational and strategic cost.</li>
+          <li>الجودة تحتاج دورة مستمرة وليس مشروع تنظيف لمرة واحدة. | Quality needs a continuous cycle, not a one-time cleanse.</li>
+          <li>النجاح يبدأ بتحديد البيانات الحرجة والأدوار. | Success starts with CDEs and clear roles.</li>
+        </ul>
+        <div class="highlight mb-0">سؤال ختامي: ما هي أهم 3 جداول/ملفات في عملكم إذا انهارت جودتها يتوقف العمل؟
+          <div class="en">Closing question: What are the top 3 tables/files in your work that would stop operations if their quality collapsed?</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="part-banner" id="DQ_Module_1_Dimensions_Metrics">
+      الجزء ب — أبعاد ومقاييس الجودة | Part B — Dimensions & Metrics
+      <div class="en" style="font-weight:500;margin-top:.25rem">Source module preserved in full below.</div>
+    </div>
+    <div class="card section-card">
+      <div class="card-header">أهداف التعلم | Learning Objectives</div>
+      <div class="card-body">
+        <ul>
+          <li>شرح الأبعاد الأساسية لجودة البيانات بأمثلة عملية</li>
+          <li>تحويل كل بُعد إلى مقياس (Metric) قابل للقياس</li>
+          <li>بناء DQ Score بسيط وقابل للتواصل مع الإدارة</li>
+          <li>تحديد أولويات القياس حسب أثر العمل</li>
+        </ul>
+        <div class="en">Explain core DQ dimensions with examples; turn each dimension into a measurable metric; build a simple management-ready DQ Score; prioritize measurement by business impact.</div>
+      </div>
+    </div>
+
+    <div class="card section-card">
+      <div class="card-header">الموضوعات | Topics</div>
+      <div class="card-body">
+        <span class="pill">Accuracy</span>
+        <span class="pill">Completeness</span>
+        <span class="pill">Consistency</span>
+        <span class="pill">Timeliness</span>
+        <span class="pill">Validity</span>
+        <span class="pill">Uniqueness</span>
+        <span class="pill">DQ Metrics & KPI</span>
+        <span class="pill">Business Impact</span>
+      </div>
+    </div>
+
+    <div class="card section-card">
+      <div class="card-header">1) لماذا نحتاج «أبعادًا» وليس شعورًا عامًا؟ | Why dimensions, not gut feel?</div>
+      <div class="card-body">
+        <p>
+          عبارة «البيانات سيئة» غير قابلة للإدارة. الأبعاد تحوّل الشكوى إلى تشخيص:
+          هل المشكلة نقص؟ خطأ؟ تكرار؟ تأخير؟ تعارض بين نظامين؟
+        </p>
+        <div class="en"><span class="sub">In English:</span> “Bad data” is not manageable. Dimensions turn complaints into diagnosis: missing, wrong, duplicate, late, or conflicting across systems?</div>
+        <div class="highlight">بدون أبعاد واضحة لن تستطيع وضع هدف مثل: رفع اكتمال رقم الجوال من 72% إلى 95% خلال 60 يومًا.
+          <div class="en">Without clear dimensions you cannot set a target such as raising phone completeness from 72% to 95% in 60 days.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card section-card">
+      <div class="card-header">2) الأبعاد الستة الأساسية | The Six Core Dimensions</div>
+      <div class="card-body">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="dim">
+              <h6>1) الدقة — Accuracy</h6>
+              <p>هل القيمة تمثّل الواقع الصحيح؟</p>
+              <div class="en">Does the value represent the real world correctly?</div>
+              <p class="mb-0 mt-2"><strong>مثال | Example:</strong> رقم الهوية مسجّل خطأ، أو عنوان العميل قديم بعد انتقاله.</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="dim">
+              <h6>2) الاكتمال — Completeness</h6>
+              <p>هل الحقول المطلوبة موجودة وغير فارغة؟</p>
+              <div class="en">Are required fields present and non-empty?</div>
+              <p class="mb-0 mt-2"><strong>مثال | Example:</strong> طلب شحن بدون مدينة أو بدون رقم جوال.</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="dim">
+              <h6>3) الاتساق — Consistency</h6>
+              <p>هل نفس الحقيقة متوافقة عبر الأنظمة والحقول؟</p>
+              <div class="en">Is the same fact aligned across systems and fields?</div>
+              <p class="mb-0 mt-2"><strong>مثال | Example:</strong> حالة الطلب «مُغلق» في المبيعات و«مفتوح» في المالية.</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="dim">
+              <h6>4) التوقيت — Timeliness</h6>
+              <p>هل البيانات متاحة بالوقت الذي يحتاجه القرار؟</p>
+              <div class="en">Is data available when the decision needs it?</div>
+              <p class="mb-0 mt-2"><strong>مثال | Example:</strong> تقرير المخزون يصل بعد نفاد الصنف.</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="dim">
+              <h6>5) الصلاحية — Validity</h6>
+              <p>هل القيمة ضمن الشكل والنطاق والقواعد المسموحة؟</p>
+              <div class="en">Is the value within allowed format, range, and rules?</div>
+              <p class="mb-0 mt-2"><strong>مثال | Example:</strong> تاريخ ميلاد في المستقبل، أو جوال من 5 أرقام.</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="dim">
+              <h6>6) التفرّد — Uniqueness</h6>
+              <p>هل الكيان يظهر مرة واحدة كما يجب؟</p>
+              <div class="en">Does the entity appear once as intended?</div>
+              <p class="mb-0 mt-2"><strong>مثال | Example:</strong> نفس العميل بثلاث بطاقات مختلفة بسبب اختلاف كتابة الاسم.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card section-card">
+      <div class="card-header">3) أبعاد إضافية مهمة | Additional Important Dimensions</div>
+      <div class="card-body">
+        <div class="row g-3">
+          <div class="col-md-6"><div class="topic-box"><div class="topic-title">Integrity — السلامة المرجعية</div>العلاقات بين الجداول سليمة (كل فاتورة لها عميل موجود).<div class="en">Table relationships are sound (every invoice has an existing customer).</div></div></div>
+          <div class="col-md-6"><div class="topic-box"><div class="topic-title">Conformity — المطابقة المعيارية</div>الالتزام بمعايير موحّدة (ISO تاريخ، كود الدولة، عملة).<div class="en">Compliance with shared standards (ISO dates, country codes, currency).</div></div></div>
+          <div class="col-md-6"><div class="topic-box"><div class="topic-title">Accessibility — قابلية الوصول</div>الشخص المخوّل يصل للبيانات بسهولة وأمان.<div class="en">Authorized users can access data easily and securely.</div></div></div>
+          <div class="col-md-6"><div class="topic-box"><div class="topic-title">Relevance — الملاءمة</div>البيانات مفيدة للسؤال الحالي وليست ضوضاء زائدة.<div class="en">Data is useful for the current question, not excess noise.</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card section-card">
+      <div class="card-header">4) من البُعد إلى المقياس (Metric) | From Dimension to Metric</div>
+      <div class="card-body">
+        <p>المقياس الجيد: واضح، محسوب، مرتبط بهدف عمل، وله مالك.</p>
+        <div class="en">A good metric is clear, calculable, linked to a business goal, and has an owner.</div>
+        <table class="table table-bordered align-middle mt-3">
+          <thead class="table-light"><tr><th>البُعد | Dimension</th><th>صيغة قياس مقترحة | Suggested formula</th><th>هدف نموذجي | Typical target</th></tr></thead>
+          <tbody>
+            <tr><td>Completeness</td><td>(سجلات بحقل مكتمل ÷ إجمالي السجلات) × 100</td><td>≥ 98% لحقل الجوال</td></tr>
+            <tr><td>Validity</td><td>(سجلات بصيغة صحيحة ÷ الإجمالي) × 100</td><td>≥ 99% لتواريخ الطلب</td></tr>
+            <tr><td>Uniqueness</td><td>1 − (عدد المكررات ÷ الإجمالي)</td><td>≥ 99.5% لهوية العميل</td></tr>
+            <tr><td>Consistency</td><td>(سجلات متوافقة بين نظامين ÷ العينة) × 100</td><td>≥ 97%</td></tr>
+            <tr><td>Timeliness</td><td>% التحديثات خلال SLA المتفق عليه</td><td>≥ 95% خلال 15 دقيقة</td></tr>
+            <tr><td>Accuracy</td><td>% المطابقة مع مصدر موثوق / تدقيق ميداني</td><td>حسب المخاطر | Risk-based</td></tr>
+          </tbody>
+        </table>
+        <div class="topic-box">
+          <div class="topic-title">ملاحظة على Accuracy | Note on Accuracy</div>
+          الدقة أصعب قياسًا لأنها تحتاج مرجع حقيقة (Golden Source أو تحقق بشري). لذلك كثير من المؤسسات تبدأ بـ Completeness + Validity + Uniqueness ثم تضيف Accuracy تدريجيًا.
+          <div class="en">Accuracy is harder because it needs a golden source or human verification. Many organizations start with Completeness + Validity + Uniqueness, then add Accuracy gradually.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card section-card">
+      <div class="card-header">5) بطاقة درجة الجودة (DQ Score) | Composite DQ Score</div>
+      <div class="card-body">
+        <p>يمكن بناء درجة مركّبة بسيطة للجدول الحرج:</p>
+        <div class="en">You can build a simple composite score for a critical table:</div>
+        <div class="topic-box mt-2">
+          <strong>DQ Score =</strong>
+          (0.25×Completeness) + (0.20×Validity) + (0.20×Uniqueness) + (0.15×Consistency) + (0.10×Timeliness) + (0.10×Accuracy)
+        </div>
+        <p class="mt-3">الأوزان ليست مقدّسة؛ غيّرها حسب السياق:</p>
+        <div class="en">Weights are not sacred—adjust by context:</div>
+        <ul>
+          <li>نظام فوترة: Validity و Accuracy أعلى وزنًا. | Billing: higher Validity & Accuracy.</li>
+          <li>نظام تسويق: Completeness و Uniqueness أعلى وزنًا. | Marketing: higher Completeness & Uniqueness.</li>
+          <li>لوحة تشغيل لحظية: Timeliness أعلى وزنًا. | Real-time ops dashboard: higher Timeliness.</li>
+        </ul>
+        <div class="highlight">اعرض الدرجة للإدارة بلون: أحمر &lt; 80 | أصفر 80–90 | أخضر &gt; 90 (عدّل العتبات حسب نضجكم).
+          <div class="en">Show management with colors: Red &lt; 80 | Yellow 80–90 | Green &gt; 90 (tune thresholds to your maturity).</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card section-card">
+      <div class="card-header">6) تحديد الأولويات حسب أثر العمل | Prioritize by Business Impact</div>
+      <div class="card-body">
+        <p>لا تقيس كل شيء دفعة واحدة. رتّب الحقول بـ:</p>
+        <div class="en">Do not measure everything at once. Rank fields by:</div>
+        <ol>
+          <li><strong>Critical Data Elements (CDEs):</strong> الحقول التي يكسر غيابها العملية. | Fields whose absence breaks the process.</li>
+          <li><strong>Business Impact:</strong> مالي، امتثال، سمعة، تشغيل. | Financial, compliance, reputation, operations.</li>
+          <li><strong>Feasibility:</strong> هل يمكن القياس والتصحيح الآن؟ | Can we measure and fix now?</li>
+        </ol>
+        <table class="table table-bordered">
+          <thead class="table-light"><tr><th>حقل | Field</th><th>الأثر | Impact</th><th>سهولة القياس | Measurability</th><th>أولوية | Priority</th></tr></thead>
+          <tbody>
+            <tr><td>رقم هوية العميل | National ID</td><td>عالي جدًا | Very high</td><td>عالية | High</td><td>P1</td></tr>
+            <tr><td>رقم الجوال | Phone</td><td>عالي | High</td><td>عالية | High</td><td>P1</td></tr>
+            <tr><td>البريد الإلكتروني | Email</td><td>متوسط | Medium</td><td>عالية | High</td><td>P2</td></tr>
+            <tr><td>الملاحظات الحرة | Free-text notes</td><td>منخفض | Low</td><td>منخفضة | Low</td><td>P3</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card section-card">
+      <div class="card-header">7) تمرين صفّي (45 دقيقة) | Classroom Exercise</div>
+      <div class="card-body">
+        <div class="topic-box">
+          <div class="topic-title">السيناريو | Scenario</div>
+          شركة تجارة إلكترونية تعاني من: عملاء مكررين، عناوين ناقصة، تواريخ طلب بصيغ مختلفة، وتأخر مزامنة المخزون.
+          <div class="en">An e-commerce company has duplicate customers, incomplete addresses, mixed order-date formats, and delayed inventory sync.</div>
+        </div>
+        <p><strong>المطلوب من كل مجموعة | Team tasks:</strong></p>
+        <ol>
+          <li>اختيار 5 حقول حرجة (CDEs).</li>
+          <li>ربط كل حقل ببُعدين على الأقل.</li>
+          <li>كتابة مقياس + هدف رقمي لكل حقل.</li>
+          <li>اقتراح أوزان لـ DQ Score لجدول Customers.</li>
+        </ol>
+        <div class="highlight mb-0">مخرج التمرين: جدول أبعاد/مقاييس صفحة واحدة يُعرض للمجموعة.
+          <div class="en">Deliverable: one-page dimensions/metrics matrix presented to the class.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card section-card">
+      <div class="card-header">خلاصة الموديول 1 | Module 1 Summary</div>
+      <div class="card-body">
+        <ul>
+          <li>الأبعاد تحوّل «البيانات سيئة» إلى تشخيص قابل للإدارة.</li>
+          <li>كل بُعد يحتاج مقياسًا وهدفًا ومالكًا.</li>
+          <li>ابدأ بالـ CDEs وليس بكل قاعدة البيانات.</li>
+          <li>DQ Score أداة تواصل مع الإدارة أكثر مما هو غاية بحد ذاته.</li>
+        </ul>
+        <div class="en">
+          Dimensions make “bad data” manageable; every dimension needs a metric, target, and owner; start with CDEs; DQ Score is mainly a management communication tool.
+        </div>
+        <div class="highlight mb-0 mt-3">التالي: كيف نقيس هذه الأبعاد عمليًا عبر Profiling والقواعد؟
+          <div class="en">Next: how do we measure these dimensions in practice via profiling and rules?</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="part-banner" id="DQ_Module_2_Assessment_Measurement">
+      الجزء ج — التقييم والقياس | Part C — Assessment & Measurement
+      <div class="en" style="font-weight:500;margin-top:.25rem">Source module preserved in full below.</div>
+    </div>
+    <div class="card section-card">
+      <div class="card-header">أهداف التعلم | Learning Objectives</div>
+      <div class="card-body">
+        <ul>
+          <li>تنفيذ Data Profiling لاكتشاف خصائص ومشاكل البيانات</li>
+          <li>التمييز بين قواعد العمل والقواعد التقنية</li>
+          <li>اختيار أسلوب القياس المناسب (عينة / شامل)</li>
+          <li>إعداد تقرير تقييم جودة وبطاقة درجات</li>
+        </ul>
+        <div class="en">Perform data profiling; distinguish business vs technical rules; choose sampling vs full scan; produce a DQ assessment report and scorecard.</div>
+      </div>
+    </div>
+
+    <div class="card section-card">
+      <div class="card-header">الموضوعات | Topics</div>
+      <div class="card-body">
+        <span class="pill">Data Profiling</span>
+        <span class="pill">Business Rules</span>
+        <span class="pill">Sampling</span>
+        <span class="pill">DQ Scorecard</span>
+        <span class="pill">Assessment Report</span>
+      </div>
+    </div>
+
+    <div class="card section-card">
+      <div class="card-header">1) ما هو Data Profiling؟ | What is Data Profiling?</div>
+      <div class="card-body">
+        <p>
+          الـ <strong>Profiling</strong> هو فحص استكشافي للبيانات لفهم شكلها الحقيقي:
+          أنواع الحقول، التوزيعات، القيم الشائعة، القيم الفارغة، القيم الشاذة، المفاتيح المحتملة، والعلاقات.
+        </p>
+        <div class="en"><span class="sub">In English:</span> Profiling is exploratory analysis of data shape: field types, distributions, common values, nulls, outliers, candidate keys, and relationships.</div>
+        <div class="row g-3 mt-2">
+          <div class="col-md-4"><div class="topic-box"><div class="topic-title">Column Profiling</div>Null%، Distinct، Min/Max، أنماط القيم، أطوال النصوص.<div class="en">Null %, distinct, min/max, patterns, text lengths.</div></div></div>
+          <div class="col-md-4"><div class="topic-box"><div class="topic-title">Cross-column</div>اعتمادية بين حقلين (مدينة ↔ رمز بريدي).<div class="en">Dependencies between fields (city ↔ postal code).</div></div></div>
+          <div class="col-md-4"><div class="topic-box"><div class="topic-title">Cross-table</div>سلامة العلاقات بين الجداول والمراجع.<div class="en">Integrity of relationships across tables/references.</div></div></div>
+        </div>
+        <div class="highlight mt-3">Profiling لا يصدر حكمًا نهائيًا وحده؛ هو يفتح الأسئلة، والقواعد تحسمها.
+          <div class="en">Profiling alone is not a final verdict; it opens questions that rules settle.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card section-card">
+      <div class="card-header">2) أمثلة SQL سريعة للـ Profiling | Quick SQL Profiling Examples</div>
+      <div class="card-body">
+        <p>اكتمال رقم الجوال | Phone completeness:</p>
+        <div class="code">USE Abad_DataQuality_Lab;
+SELECT
+  COUNT(*) AS total_rows,
+  SUM(CASE WHEN phone IS NULL OR LTRIM(RTRIM(phone)) = '' THEN 1 ELSE 0 END) AS missing_phone,
+  CAST(100.0 * SUM(CASE WHEN phone IS NOT NULL AND LTRIM(RTRIM(phone)) &lt;&gt; '' THEN 1 ELSE 0 END)
+       / COUNT(*) AS DECIMAL(5,2)) AS completeness_pct
+FROM dbo.customers;</div>
+        <p class="mt-3">صلاحية صيغة الجوال (مثال مبسّط للسعودية) | Validity (simplified Saudi mobile):</p>
+        <div class="code">SELECT COUNT(*) AS invalid_phone
+FROM dbo.customers
+WHERE phone IS NOT NULL
+  AND phone NOT LIKE '05%'
+  AND phone NOT LIKE '+9665%';</div>
+        <p class="mt-3">اكتشاف تكرار محتمل بالبريد | Potential email duplicates:</p>
+        <div class="code">SELECT LOWER(email) AS email_norm, COUNT(*) AS cnt
+FROM dbo.customers
+WHERE email IS NOT NULL
+GROUP BY LOWER(email)
+HAVING COUNT(*) &gt; 1
+ORDER BY cnt DESC;</div>
+      </div>
+    </div>
+
+    <div class="card section-card">
+      <div class="card-header">3) قواعد القياس: عمل مقابل تقنية | Measurement Rules: Business vs Technical</div>
+      <div class="card-body">
+        <table class="table table-bordered">
+          <thead class="table-light"><tr><th>النوع | Type</th><th>التعريف | Definition</th><th>مثال | Example</th></tr></thead>
+          <tbody>
+            <tr><td>Technical Rule</td><td>قيد شكلي/تقني | Format/tech constraint</td><td>الحقل رقمي، الطول 10، ليس NULL</td></tr>
+            <tr><td>Business Rule</td><td>منطق أعمال | Business logic</td><td>لا يمكن شحن طلب بحالة «ملغى»</td></tr>
+            <tr><td>Referential Rule</td><td>سلامة العلاقات | Referential integrity</td><td>customer_id في الفاتورة موجود في العملاء</td></tr>
+            <tr><td>Cross-system Rule</td><td>اتساق بين أنظمة | Cross-system consistency</td><td>رصيد ERP = مجموع حركات المستودع</td></tr>
+          </tbody>
+        </table>
+        <div class="topic-box mb-0">
+          <div class="topic-title">أفضل ممارسة | Best practice</div>
+          اكتب القاعدة بصيغة: <em>إذا تحقق الشرط X فيجب أن يتحقق Y، وإلا فشل الجودة برمز DQ-xxx.</em>
+          <div class="en">Write rules as: If condition X holds, then Y must hold; otherwise fail with code DQ-xxx.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card section-card">
+      <div class="card-header">4) العينة أم الفحص الشامل؟ | Sampling vs Full Scan</div>
+      <div class="card-body">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="topic-box">
+              <div class="topic-title">فحص شامل | Full scan</div>
+              <ul class="mb-0">
+                <li>مناسب للجداول الحرجة متوسطة الحجم | Good for medium critical tables</li>
+                <li>يعطي درجة دقيقة | Precise score</li>
+                <li>قد يكون مكلفًا على بيانات ضخمة يوميًا | Costly on huge daily volumes</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="topic-box">
+              <div class="topic-title">أخذ عينات | Sampling</div>
+              <ul class="mb-0">
+                <li>مناسب للتدقيق البشري والدقة Accuracy | Good for human Accuracy audits</li>
+                <li>أرخص وأسرع | Cheaper and faster</li>
+                <li>يحتاج تصميم عينة صحيح لتجنب الانحياز | Needs sound sample design to avoid bias</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <p class="mt-3 mb-0">توصية عملية: قواعد آلية شاملة يوميًا + عينة بشرية أسبوعية/شهرية للدقة والسياق.</p>
+        <div class="en">Practical recommendation: automated full rules daily + human Accuracy sampling weekly/monthly.</div>
+      </div>
+    </div>
+
+    <div class="card section-card">
+      <div class="card-header">5) بطاقة الجودة وتقرير التقييم | Scorecard & Assessment Report</div>
+      <div class="card-body">
+        <p>عناصر تقرير التقييم الجيد | Elements of a good assessment report:</p>
+        <ol>
+          <li>نطاق التقييم (الجداول/الحقول/الفترة). | Scope (tables/fields/period).</li>
+          <li>الأبعاد والمقاييس المستخدمة. | Dimensions and metrics used.</li>
+          <li>النتائج الرقمية + أمثلة سجلات فاشلة. | Numeric results + failed record samples.</li>
+          <li>تصنيف الخطورة (Critical / Major / Minor).</li>
+          <li>الأسباب المحتملة الأولية. | Initial likely causes.</li>
+          <li>توصيات التصحيح والمنع مع أولوية. | Remediation and prevention recommendations with priority.</li>
+        </ol>
+        <table class="table table-bordered">
+          <thead class="table-light"><tr><th>المقياس | Metric</th><th>النتيجة | Result</th><th>الهدف | Target</th><th>الحالة | Status</th></tr></thead>
+          <tbody>
+            <tr><td>Completeness — Phone</td><td>84%</td><td>98%</td><td class="text-danger">Critical</td></tr>
+            <tr><td>Validity — OrderDate</td><td>96%</td><td>99%</td><td class="text-warning">Major</td></tr>
+            <tr><td>Uniqueness — CustomerKey</td><td>91%</td><td>99.5%</td><td class="text-danger">Critical</td></tr>
+            <tr><td>Consistency — Status CRM/ERP</td><td>88%</td><td>97%</td><td class="text-danger">Critical</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card section-card">
+      <div class="card-header">6) تمرين عملي: Profiling لجدول عملاء | Lab: Customer Profiling</div>
+      <div class="card-body">
+        <div class="topic-box">
+          <div class="topic-title">المعطيات | Inputs</div>
+          استخدم قاعدة <code>Abad_DataQuality_Lab</code> (جدول <code>dbo.customers</code>) من مجلد SQL / Labs.
+          <div class="en">Use the <code>Abad_DataQuality_Lab</code> database (<code>dbo.customers</code>) from Material/SQL and Labs.</div>
+        </div>
+        <p><strong>المطلوب | Tasks:</strong></p>
+        <ol>
+          <li>احسب Null% و Distinct لكل عمود رئيسي.</li>
+          <li>استخرج أعلى 10 قيم شائعة لحقل City و Status.</li>
+          <li>أدرج 5 قواعد قياس واحسب نسبة النجاح لكل قاعدة.</li>
+          <li>أعد Scorecard صفحة واحدة + 3 توصيات فورية.</li>
+        </ol>
+        <div class="highlight mb-0">معيار النجاح: التقرير يربط كل رقم بمشكلة أعمال واضحة (مثل فشل التواصل أو ازدواج الخصم).
+          <div class="en">Success criterion: every number links to a clear business problem (e.g., failed outreach or duplicate discounts).</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card section-card">
+      <div class="card-header">خلاصة الموديول 2 | Module 2 Summary</div>
+      <div class="card-body">
+        <ul>
+          <li>Profiling يكشف الشكل الحقيقي للبيانات. | Profiling reveals the true shape of data.</li>
+          <li>القواعد تحوّل الاكتشاف إلى قياس منضبط. | Rules turn discovery into disciplined measurement.</li>
+          <li>التقرير الجيد يخدم القرار لا يعرض جداول فقط. | A good report serves decisions, not just tables.</li>
+        </ul>
+        <div class="highlight mb-0">التالي: بعد القياس، كيف ننظّف ونصحّح بأمان؟
+          <div class="en">Next: after measurement, how do we clean and correct safely?</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

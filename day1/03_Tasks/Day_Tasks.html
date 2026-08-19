@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تاسكات اليوم 1 — سهلة مع الحل</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+  <style>
+    body{background:#f7fafc;font-family:Tahoma,Arial,sans-serif;color:#1f2937;line-height:2;font-size:1.05rem;}
+    .hero{background:linear-gradient(135deg,#1f4e79,#2f6fa8);color:#fff;padding:32px 20px;border-radius:18px;}
+    .card-x{background:#fff;border:1px solid #dbe5f0;border-radius:16px;margin-bottom:16px;overflow:hidden;}
+    .card-x .h{background:#eaf2f8;color:#12395b;font-weight:700;padding:12px 14px;}
+    .card-x .b{padding:16px;}
+    .ask{background:#eff6ff;border-radius:12px;padding:12px 14px;margin-bottom:10px;}
+    .sol{background:#ecfdf5;border-right:5px solid #059669;border-radius:12px;padding:12px 14px;margin-top:10px;}
+    .why{background:#fff8e1;border-right:5px solid #f2b705;border-radius:12px;padding:12px 14px;margin-top:10px;}
+    .code{background:#0f172a;color:#e2e8f0;border-radius:12px;padding:12px;font-family:Consolas,monospace;direction:ltr;text-align:left;white-space:pre-wrap;font-size:.9rem;}
+    .box{background:#f8fbff;border:1px solid #dbe5f0;border-radius:12px;padding:12px 14px;}
+  </style>
+</head>
+<body>
+  <div class="container py-4" style="max-width:900px">
+    <section class="hero text-center mb-3">
+      <h1 class="fw-bold">03 — التاسكات السهلة + الحل تحت كل تاسك</h1>
+      <p class="mb-0 mt-2">انسخ الكود كما هو. لا تحتاج تعقيد.</p>
+    </section>
+
+    <div class="box mb-3">
+      قبل التاسكات: اقرأ الشرح النظري بالترتيب من هنا:
+      <a href="../02_Theory/00_Theory_Index.html"><strong>02_Theory</strong></a>
+      ثم تأكد أن قاعدة البيانات اتعملت (Create + Seed).
+    </div>
+
+    <div class="card-x">
+      <div class="h">تاسك 1 — افتح الجدول وشوفه</div>
+      <div class="b">
+        <div class="ask"><strong>المطلوب:</strong> اعرض أول 10 عملاء.</div>
+        <div class="sol">
+          <strong>الحل (انسخه):</strong>
+          <div class="code">USE Abad_DataQuality_Lab;
+SELECT TOP 10 * FROM dbo.customers;</div>
+        </div>
+        <div class="why"><strong>شرح بسيط:</strong> هذا فقط عشان تشوف شكل البيانات بعينك. لا تحسب شيء الآن.</div>
+      </div>
+    </div>
+
+    <div class="card-x">
+      <div class="h">تاسك 2 — كم عدد العملاء؟</div>
+      <div class="b">
+        <div class="ask"><strong>المطلوب:</strong> اعرف عدد صفوف جدول العملاء.</div>
+        <div class="sol">
+          <strong>الحل:</strong>
+          <div class="code">SELECT COUNT(*) AS total_customers
+FROM dbo.customers;</div>
+          الناتج المتوقع تقريبًا: <strong>23</strong>
+        </div>
+        <div class="why"><strong>شرح:</strong> COUNT(*) يعني: عُد كل الصفوف. هذا رقم «الإجمالي» اللي هنستخدمه بعدين.</div>
+      </div>
+    </div>
+
+    <div class="card-x">
+      <div class="h">تاسك 3 — مين إيميله فاضي؟</div>
+      <div class="b">
+        <div class="ask"><strong>المطلوب:</strong> أظهر العملاء بدون إيميل.</div>
+        <div class="sol">
+          <strong>الحل:</strong>
+          <div class="code">SELECT customer_id, full_name, email
+FROM dbo.customers
+WHERE email IS NULL OR LTRIM(RTRIM(email)) = '';</div>
+        </div>
+        <div class="why"><strong>شرح:</strong> WHERE يصفي الصفوف. IS NULL أو نص فاضي = ناقص. هذا اسمه مشكلة اكتمال (Completeness).</div>
+      </div>
+    </div>
+
+    <div class="card-x">
+      <div class="h">تاسك 4 — احسب كم إيميل ناقص</div>
+      <div class="b">
+        <div class="ask"><strong>المطلوب:</strong> رقم واحد فقط: كم عميل إيميله ناقص؟</div>
+        <div class="sol">
+          <strong>الحل:</strong>
+          <div class="code">SELECT COUNT(*) AS missing_email_count
+FROM dbo.customers
+WHERE email IS NULL OR LTRIM(RTRIM(email)) = '';</div>
+        </div>
+        <div class="why"><strong>شرح:</strong> نفس فلتر تاسك 3 + COUNT. لو الناتج 2 مثلًا، معناها في عميلين بدون إيميل.</div>
+      </div>
+    </div>
+
+    <div class="card-x">
+      <div class="h">تاسك 5 — اكتمال الجوال بنسبة مئوية (نسخة سهلة)</div>
+      <div class="b">
+        <div class="ask"><strong>المطلوب:</strong> احسب نسبة اكتمال الجوال.</div>
+        <div class="sol">
+          <strong>الحل:</strong>
+          <div class="code">SELECT
+  COUNT(*) AS total_rows,
+  SUM(CASE WHEN phone IS NOT NULL AND LTRIM(RTRIM(phone)) &lt;&gt; '' THEN 1 ELSE 0 END) AS has_phone,
+  CAST(
+    100.0 * SUM(CASE WHEN phone IS NOT NULL AND LTRIM(RTRIM(phone)) &lt;&gt; '' THEN 1 ELSE 0 END)
+    / COUNT(*)
+  AS DECIMAL(5,2)) AS phone_completeness_pct
+FROM dbo.customers;</div>
+          اقرأ الناتج هكذا: انظر عمود <code>phone_completeness_pct</code> فقط.
+        </div>
+        <div class="why">
+          <strong>شرح بالعربي الفصيح البسيط:</strong><br>
+          - لو الجوال موجود → نحسب 1<br>
+          - لو فاضي → نحسب 0<br>
+          - نجمع الواحدات ÷ الإجمالي × 100 = النسبة<br>
+          مثال: لو 22 من 23 عندهم جوال → النسبة حوالي 95.65%
+        </div>
+      </div>
+    </div>
+
+    <div class="card-x">
+      <div class="h">تاسك 6 — لاقِ الإيميلات المكررة</div>
+      <div class="b">
+        <div class="ask"><strong>المطلوب:</strong> أي إيميل اتكرر أكثر من مرة؟</div>
+        <div class="sol">
+          <strong>الحل:</strong>
+          <div class="code">SELECT email, COUNT(*) AS cnt
+FROM dbo.customers
+WHERE email IS NOT NULL AND LTRIM(RTRIM(email)) &lt;&gt; ''
+GROUP BY email
+HAVING COUNT(*) &gt; 1;</div>
+          المتوقع مثل: ahmad@mail.com و m.ghamdi@mail.com و abdullah@mail.com
+        </div>
+        <div class="why">
+          <strong>شرح:</strong><br>
+          1) GROUP BY email = حط نفس الإيميل مع بعض<br>
+          2) COUNT = كم مرة ظهر<br>
+          3) HAVING &gt; 1 = أظهر المكرر فقط<br>
+          هذه مشكلة Uniqueness.
+        </div>
+      </div>
+    </div>
+
+    <div class="card-x">
+      <div class="h">تاسك 7 — اكتب 3 جمل فقط (بدون كود)</div>
+      <div class="b">
+        <div class="ask"><strong>المطلوب:</strong> من النتائج، اكتب 3 ملاحظات قصيرة.</div>
+        <div class="sol">
+          <strong>حل نموذجي:</strong>
+          <ol>
+            <li>في عملاء بدون إيميل → اكتمال ناقص.</li>
+            <li>في إيميلات مكررة → تفرّد ناقص.</li>
+            <li>لازم نحط هدف مثل: اكتمال الإيميل ≥ 98%.</li>
+          </ol>
+        </div>
+        <div class="why"><strong>شرح:</strong> التاسك ده للتأكد إنك فهمت النتيجة، مش لحفظ SQL.</div>
+      </div>
+    </div>
+
+    <div class="box">
+      بعد كده روح للمعامل البسيطة:
+      <a href="../04_SQL_Labs/Day_SQL_Labs_Guide.html">04 SQL Labs</a>
+    </div>
+  </div>
+</body>
+</html>

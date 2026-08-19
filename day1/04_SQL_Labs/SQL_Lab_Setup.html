@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SQL Server Lab Setup | إعداد قاعدة معامل جودة البيانات</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+  <style>
+    body{background:#f4f7fb;font-family:Tahoma,Arial,sans-serif;color:#1f2937;line-height:1.9;}
+    .hero{background:linear-gradient(135deg,#12395b,#2f6fa8);color:#fff;padding:40px 24px;border-radius:22px;}
+    .card-x{border:none;border-radius:16px;box-shadow:0 8px 22px rgba(15,23,42,.08);margin:18px 0;}
+    .card-x .card-header{background:#eaf2f8;color:#12395b;font-weight:700;}
+    .en{direction:ltr;text-align:left;font-family:Arial,Helvetica,sans-serif;line-height:1.7;margin-top:.35rem;}
+    .code{background:#0f172a;color:#e2e8f0;border-radius:12px;padding:12px 14px;font-family:Consolas,monospace;direction:ltr;text-align:left;white-space:pre-wrap;}
+    .box{background:#f8fbff;border:1px solid #dbe5f0;border-radius:12px;padding:12px 14px;}
+  </style>
+</head>
+<body>
+  <div class="container py-4" style="max-width:900px">
+    <section class="hero text-center mb-4">
+      <p class="mb-2 opacity-75">معهد شبكة أباد للتدريب | ABAD Network for Training</p>
+      <h1 class="fw-bold">إعداد قاعدة SQL Server للمعامل</h1>
+      <h4>SQL Server Lab Database Setup (AR/EN)</h4>
+      <p class="mb-0 mt-2">Database: <code>Abad_DataQuality_Lab</code></p>
+    </section>
+
+    <div class="card card-x">
+      <div class="card-header">الترتيب | Run order</div>
+      <div class="card-body">
+        <ol>
+          <li><code>01_Create_Database.sql</code> — إنشاء القاعدة والجداول</li>
+          <li><code>02_Seed_Dirty_Data.sql</code> — تحميل بيانات فيها مشاكل متعمدة</li>
+          <li><code>03_Explore_Only.sql</code> — استكشاف آمن للمتدرب (بدون حلول)</li>
+        </ol>
+        <div class="en">Run create → seed → explore. Solutions are NOT here; use <code>Labs/DQ_Labs_Solutions.sql</code> for instructors only.</div>
+      </div>
+    </div>
+
+    <div class="card card-x">
+      <div class="card-header">الجداول | Tables</div>
+      <div class="card-body">
+        <ul>
+          <li><code>customers</code>, <code>customer_addresses</code></li>
+          <li><code>orders</code>, <code>order_lines</code>, <code>payments</code></li>
+          <li><code>products</code>, <code>employees</code></li>
+          <li><code>ref_cities</code>, <code>ref_segments</code></li>
+          <li><code>dq_exception_log</code> — لتمارين المراقبة والاستثناءات</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card card-x">
+      <div class="card-header">مشاكل مضمّنة تغطي الكورس | Embedded issues covering the course</div>
+      <div class="card-body">
+        <table class="table table-bordered">
+          <thead class="table-light"><tr><th>Dimension / Topic</th><th>Examples in DB</th></tr></thead>
+          <tbody>
+            <tr><td>Completeness</td><td>Missing name/email/phone/city/national_id</td></tr>
+            <tr><td>Validity</td><td>Bad email @@, short phones, negative amounts, qty=0</td></tr>
+            <tr><td>Uniqueness</td><td>Duplicate emails, national_ids, customer_id C003 twice</td></tr>
+            <tr><td>Consistency</td><td>Order total ≠ sum(lines); Cancelled + Captured payment</td></tr>
+            <tr><td>Integrity</td><td>Orphan customer/product/employee/payment references</td></tr>
+            <tr><td>Conformity</td><td>Cities/segments not in reference tables; mixed currencies</td></tr>
+            <tr><td>Timeliness</td><td>Future dates; stale updated_at</td></tr>
+            <tr><td>Business rules</td><td>Closed customer with Open order; discontinued product sold</td></tr>
+            <tr><td>Multi-source</td><td>CRM / WEB / PARTNER duplicates of same person</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card card-x">
+      <div class="card-header">اتصال سريع | Quick connect check</div>
+      <div class="card-body">
+        <div class="code">USE Abad_DataQuality_Lab;
+SELECT COUNT(*) AS customers FROM dbo.customers;
+SELECT COUNT(*) AS orders FROM dbo.orders;</div>
+        <div class="box mt-3 mb-0">
+          بعد التحميل ابدأ من <a href="../Labs/DQ_Labs_Guide.html">دليل المعامل</a>.
+          <div class="en">After load, start from the Labs Guide. Keep Solutions file for the trainer.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
